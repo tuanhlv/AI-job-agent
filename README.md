@@ -42,14 +42,14 @@ ENGINEERING HIGHLIGHTS
 
 INSTALLATION
 
-# Clone the repository
+- Clone the repository
 git clone https://github.com/[Your-Username]/AI_job_tracker.git
 
-# Install dependencies
+- Install dependencies
 pip install -r requirements.txt
 
-# Configure your .env with Google API Keys
+- Configure your .env with Google API Keys
 echo "GOOGLE_API_KEY=your_key_here" > .env
 
-# Run the system
+- Run the system
 python orchestrator.py
