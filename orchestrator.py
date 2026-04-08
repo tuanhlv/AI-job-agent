@@ -22,7 +22,14 @@ job_contexts = agent.format_chroma_results(match_output)
 if job_contexts:
     print("\n--- Final Analysis ---\n")
     for j in range(len(job_contexts)):
-        analysis_result = agent.analyze_candidate(profile, job_contexts[j])
+        try:
+            analysis_result = agent.analyze_candidate(profile, job_contexts[j])
+        except Exception as e:
+            if "503" in str(e):
+                print(f"Server busy for job {j}. Skipping or saving for later...")
+                analysis_result = None
+            else:
+                raise e
         print(f"--- MATCH {j + 1} ---")
         print(f"Fit Summary: {analysis_result.fit_summary}")
         print(f"Gap: {analysis_result.skill_gap}")
