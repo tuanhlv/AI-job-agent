@@ -34,3 +34,18 @@ if job_contexts:
         print(f"Fit Summary: {analysis_result.fit_summary}")
         print(f"Gap: {analysis_result.skill_gap}")
         print(f"Action: {analysis_result.learning_action}\n")
+
+    # Interactive Job Chat
+    print("\n--- Interactive Job Chat ---")
+    print("Ask questions about these matches (e.g., 'Which one pays the most?' or type 'exit')")
+    chat = agent.client.chats.create(model=agent.model_name)
+    # Prime the chat with the RAG context
+    chat.send_message(f"Here is my profile: {profile} and the top jobs: {job_contexts}")
+
+    while True:
+        user_question = input("\nYou: ")
+        if user_question.lower() == 'exit':
+            break
+
+        response = chat.send_message(user_question)
+        print(f"\nAgent: {response.text}")

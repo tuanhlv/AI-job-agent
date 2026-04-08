@@ -32,7 +32,8 @@ class CareerMatchAgent:
             print(f"Error parsing ChromaDB results: {e}")
 
         return formatted_text
-
+    
+    
     def analyze_candidate(self, user_profile: str, top_jobs_text: str) -> JobAnalysis:
         """Sends the profile and jobs to Gemini and returns structured Pydantic data."""
         prompt = f"""
